@@ -30,8 +30,10 @@ php artisan key
 5. Run database migrations and seeders:
 php artisan migrate --seed
 
+6. Generate Swagger Docs
+php artisan l5-swagger:generate
 
-6. Start the development server:
+7. Start the development server:
 php artisan serve
 
-7. Access the application in your web browser at `http://localhost:8000`.
+8. Access the application in your web browser at `http://localhost:8000`.
