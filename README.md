@@ -2,6 +2,11 @@
 
 Laravel-based social networking platform where users can connect with friends, share posts, photos, and interact with each other.
 
+
+## Postman Collection (API Documentation)
+
+https://www.postman.com/material-astronaut-25984058/workspace/social-network/collection/26957473-b807cef4-2741-4d25-9f4f-aa0c9b520631?action=share&creator=26957473
+
 ## Features
 
 - **User Authentication**: Secure user authentication and registration system.
