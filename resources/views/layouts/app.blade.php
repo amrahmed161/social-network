@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Social Network</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('layouts/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{{ asset('layouts/plugins/bootstrap/css/bootstrap.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('layouts/css/adminlte.min.css') }}">
+    
+    <meta name="description" content="Connect with friends, family, and people you know. Share photos and videos, send messages, and get updates.">
+    <meta property="og:title" content="Social Network">
+    <meta property="og:description" content="Connect with friends, family, and people you know. Share photos and videos, send messages, and get updates.">
+    @yield("styles")
+</head>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<body class="">
+    @include("layouts.header")
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    @yield("content")
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    @include("layouts.footer")
+    <!-- jQuery -->
+    <script src="{{ asset('layouts/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset("layouts/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('layouts/js/adminlte.min.js') }}"></script>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+    @yield("scripts")
+</body>
+
 </html>
