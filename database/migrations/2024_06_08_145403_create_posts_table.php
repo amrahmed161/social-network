@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->longText('body')->nullable();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('deleted_by')->nullable()->constrained('users');
-            $table->timestamp('deleted_at')->nullable();
+            $table->foreignId('user_id');
+            $table->string('body', 2000)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

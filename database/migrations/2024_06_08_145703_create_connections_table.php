@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('followers', function (Blueprint $table) {
+        Schema::create('connections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('follower_id')->constrained('users');
-            $table->timestamp('created_at')->nullable();
+            $table->foreignId('user_id');
+            $table->foreignId('follower_id');
+            $table->tinyInteger('status')->default(0)->comment("0-> Pending | 1-> Accepted | 2-> Rejected");
+            $table->timestamps();
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('followers');
+        Schema::dropIfExists('connections');
     }
 };
