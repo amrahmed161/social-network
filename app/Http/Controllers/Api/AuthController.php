@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -89,4 +90,38 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logged out successfully', 'status' => 200], 200);
     }
+
+    public function updateUser(Request $request)
+{
+    $user = $request->user();
+
+    $validator = Validator::make($request->all(), [
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'bio' => 'string|max:255', 
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors(), 'status' => 400], 400);
+    }
+
+
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('user_images');
+
+        if ($user->image) {
+            Storage::delete($user->image);
+        }
+        $user->image = $imagePath;
+    }
+
+
+    if ($request->filled('bio')) {
+        $user->bio = $request->bio;
+    }
+
+    $user->save();
+
+    return response()->json(['message' => 'Profile updated successfully', 'user' => $user, 'status' => 200], 200);
+}
+
 }

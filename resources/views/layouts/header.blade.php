@@ -10,19 +10,16 @@
             <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
         </form>
         <ul class="navbar-nav">
-            @guest
+                {{-- Check if token cookie exists then remove these --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Register</a>
                 </li>
-            @endguest
-            @auth
                 <li class="nav-item">
                     <a class="nav-link" href="">Logout</a>
                 </li>
-            @endauth
         </ul>
     </div>
 </nav>
